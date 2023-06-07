@@ -45,4 +45,56 @@ function calculateTotalExpenses() {
 
 function updateTotalExpenses() {
     var totalExpenses = calculateTotalExpenses();
-    var totalExpensesElement =
+    var totalExpensesElement = document.getElementById('total-expenses');
+    totalExpensesElement.textContent = 'Общая сумма расходов: ' + totalExpenses;
+}
+
+function filterExpenses() {
+    var startDateInput = document.getElementById('start-date-input');
+    var endDateInput = document.getElementById('end-date-input');
+
+    var startDate = new Date(startDateInput.value);
+    var endDate = new Date(endDateInput.value);
+
+    var filteredExpenses = expenses.filter(function(expense) {
+        return expense.date >= startDate && expense.date <= endDate;
+    });
+
+    displayExpenses(filteredExpenses);
+}
+
+function sortExpensesByAmount() {
+    var sortedExpenses = expenses.sort(function(a, b) {
+        return a.amount - b.amount;
+    });
+
+    displayExpenses(sortedExpenses);
+}
+
+function displayExpenses(expensesToDisplay) {
+    var expenseList = document.getElementById('expense-list');
+    expenseList.innerHTML = '';
+
+    for (var i = 0; i < expensesToDisplay.length; i++) {
+        var expense = expensesToDisplay[i];
+
+        var newExpenseItem = document.createElement('li');
+        newExpenseItem.textContent = expense.name;
+
+        var deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Удалить';
+        deleteButton.addEventListener('click', deleteExpense.bind(null, i));
+
+        newExpenseItem.appendChild(deleteButton);
+        expenseList.appendChild(newExpenseItem);
+    }
+}
+
+// Инициализация обработчиков событий и обновление списка расходов
+document.getElementById('expense-input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        addExpense();
+    }
+});
+
+updateTotalExpenses
