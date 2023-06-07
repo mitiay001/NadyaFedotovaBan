@@ -1,25 +1,107 @@
-h1 {
-    color: #333;
-}
-
-label {
-    font-weight: bold;
-}
-
-input[type="text"], input[type="date"] {
-    width: 200px;
-    padding: 5px;
-}
-
-button {
-    padding: 5px 10px;
-}
-
-ul {
+/* Общие стили */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  
+  /* Шапка */
+  .header {
+    background-color: #0078d4;
+    padding: 16px;
+    color: #ffffff;
+  }
+  
+  .header-logo {
+    font-size: 24px;
+    font-weight: 600;
+  }
+  
+  /* Меню */
+  .navbar {
+    background-color: #f1f1f1;
+    padding: 8px;
+    margin-top: 16px;
+    border-radius: 8px;
+  }
+  
+  .navbar a {
+    color: #0078d4;
+    text-decoration: none;
+    padding: 8px;
+  }
+  
+  .navbar a:hover {
+    background-color: #0078d4;
+    color: #ffffff;
+    border-radius: 4px;
+  }
+  
+  /* Фильтр */
+  .filter {
+    background-color: #f1f1f1;
+    padding: 16px;
+    margin-top: 16px;
+    border-radius: 8px;
+  }
+  
+  .filter label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .filter input {
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: 1px solid #d1d1d1;
+  }
+  
+  /* Верхняя часть сайта */
+  .top-section {
+    background-color: #f1f1f1;
+    padding: 16px;
+    margin-top: 16px;
+    border-radius: 8px;
+  }
+  
+  /* Список расходов */
+  .expense-list {
     list-style-type: none;
     padding: 0;
-}
-
-li {
-    margin-bottom: 10px;
-}
+  }
+  
+  .expense-list li {
+    padding: 12px;
+    margin-bottom: 8px;
+    background-color: #ffffff;
+    border-radius: 8px;
+  }
+  
+  .expense-list li:nth-child(even) {
+    background-color: #f1f1f1;
+  }
+  
+  /* Фреймы видео */
+  .video-frame {
+    margin-top: 16px;
+  }
+  
+  /* Футер */
+  .footer {
+    background-color: #0078d4;
+    padding: 16px;
+    color: #ffffff;
+    text-align: center;
+  }
+  
+  .footer-text {
+    font-size: 14px;
+  }
+  

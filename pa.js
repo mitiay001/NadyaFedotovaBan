@@ -12,7 +12,9 @@ const applyFilterButton = document.getElementById('apply-filter-button');
 let expenses = [];
 
 // Обработчик события клика на кнопку "Добавить"
-addExpenseButton.addEventListener('click', function () {
+addExpenseButton.addEventListener('click', function (event) {
+  event.preventDefault(); // Отмена стандартного поведения кнопки
+
   const expenseName = expenseNameInput.value;
   const expenseAmount = parseFloat(expenseAmountInput.value);
   const expenseDate = expenseDateInput.value;
@@ -42,7 +44,9 @@ addExpenseButton.addEventListener('click', function () {
 });
 
 // Обработчик события клика на кнопку "Применить фильтр"
-applyFilterButton.addEventListener('click', function () {
+applyFilterButton.addEventListener('click', function (event) {
+  event.preventDefault(); // Отмена стандартного поведения кнопки
+
   renderExpenseList();
 });
 
@@ -65,7 +69,14 @@ function renderExpenseList() {
   // Добавление расходов в список
   filteredExpenses.forEach(function (expense, index) {
     const expenseItem = document.createElement('li');
-    expenseItem.textContent = `${expense.name} - $${expense.amount.toFixed(2)} (${expense.date})`;
+    const expenseInfo = document.createElement('span');
+    const expenseDate = document.createElement('span');
+
+    expenseInfo.textContent = `${expense.name} - $${expense.amount.toFixed(2)}`;
+    expenseDate.textContent = `(${expense.date})`;
+
+    expenseItem.appendChild(expenseInfo);
+    expenseItem.appendChild(expenseDate);
 
     // Добавление класса для чередования фона
     if (index % 2 === 1) {
