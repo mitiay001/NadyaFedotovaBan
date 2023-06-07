@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Мой веб-приложение</title>
+</head>
+<body>
+    <h1>My first bankomat</h1>
+
+    <script type="text/python">
+        class BankAccount:
+            def __init__(self, initial_balance=0):
+                self.balance = initial_balance
+
+            def deposit(self, amount):
+                self.balance += amount
+
+            def withdraw(self, amount):
+                if amount > self.balance:
+                    print("Недостаточно средств на счете.")
+                else:
+                    self.balance -= amount
+
+            def check_balance(self):
+                return self.balance
+
+        
+
+    </script>
+</body>
+</html>
