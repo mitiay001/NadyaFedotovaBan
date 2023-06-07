@@ -13,8 +13,23 @@
         <button onclick="addExpense()">Добавить</button>
     </div>
     
+    <div>
+        <label for="start-date-input">Начальная дата:</label>
+        <input type="date" id="start-date-input" />
+        <label for="end-date-input">Конечная дата:</label>
+        <input type="date" id="end-date-input" />
+        <button onclick="filterExpenses()">Фильтровать</button>
+    </div>
+    
+    <div>
+        <button onclick="sortExpensesByAmount()">Сортировать по сумме</button>
+    </div>
+    
     <ul id="expense-list"></ul>
+    
+    <div id="total-expenses"></div>
     
     <script src="pay.js"></script>
 </body>
 </html>
+
