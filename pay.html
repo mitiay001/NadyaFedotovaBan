@@ -8,8 +8,12 @@
     <h1>Отслеживание расходов</h1>
     
     <div>
-        <label for="expense-input">Расход:</label>
-        <input type="text" id="expense-input" />
+        <label for="expense-name-input">Нименование:</label>
+        <input type="text" id="expense-name-input" />
+        <label for="expense-amount-input">Стоимость:</label>
+        <input type="number" id="expense-amount-input" />
+        <label for="expense-date-input">Дата:</label>
+        <input type="date" id="expense-date-input" />
         <button onclick="addExpense()">Добавить</button>
     </div>
     
@@ -18,11 +22,7 @@
         <input type="date" id="start-date-input" />
         <label for="end-date-input">Конечная дата:</label>
         <input type="date" id="end-date-input" />
-        <button onclick="filterExpenses()">Фильтровать</button>
-    </div>
-    
-    <div>
-        <button onclick="sortExpensesByAmount()">Сортировать по сумме</button>
+        <button onclick="filterExpensesByDate()">Фильтровать</button>
     </div>
     
     <ul id="expense-list"></ul>
@@ -32,4 +32,3 @@
     <script src="pay.js"></script>
 </body>
 </html>
-

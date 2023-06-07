@@ -1,14 +1,19 @@
 var expenses = []; // Массив для хранения расходов
 
 function addExpense() {
-    var expenseInput = document.getElementById('expense-input');
-    var expenseValue = expenseInput.value;
+    var expenseNameInput = document.getElementById('expense-name-input');
+    var expenseAmountInput = document.getElementById('expense-amount-input');
+    var expenseDateInput = document.getElementById('expense-date-input');
 
-    if (expenseValue !== '') {
+    var expenseName = expenseNameInput.value;
+    var expenseAmount = parseFloat(expenseAmountInput.value);
+    var expenseDate = new Date(expenseDateInput.value);
+
+    if (expenseName !== '' && !isNaN(expenseAmount)) {
         var expense = {
-            name: expenseValue,
-            amount: 0, // Добавьте дополнительные поля, если необходимо
-            date: new Date()
+            name: expenseName,
+            amount: expenseAmount,
+            date: expenseDate
         };
 
         expenses.push(expense); // Добавляем расход в массив
@@ -16,10 +21,12 @@ function addExpense() {
         // Отобразить расход в списке
         var expenseList = document.getElementById('expense-list');
         var newExpenseItem = document.createElement('li');
-        newExpenseItem.textContent = expenseValue;
+        newExpenseItem.textContent = expenseName + ' - ' + expenseAmount + ' - ' + expenseDate.toDateString();
         expenseList.appendChild(newExpenseItem);
 
-        expenseInput.value = '';
+        expenseNameInput.value = '';
+        expenseAmountInput.value = '';
+        expenseDateInput.value = '';
 
         updateTotalExpenses(); // Обновляем общую сумму расходов
     }
@@ -38,7 +45,7 @@ function deleteExpense(index) {
 function calculateTotalExpenses() {
     var total = 0;
     for (var i = 0; i < expenses.length; i++) {
-        total += expenses[i].amount; // Предположим, что сумма расхода хранится в поле "amount"
+        total += expenses[i].amount;
     }
     return total;
 }
@@ -49,7 +56,7 @@ function updateTotalExpenses() {
     totalExpensesElement.textContent = 'Общая сумма расходов: ' + totalExpenses;
 }
 
-function filterExpenses() {
+function filterExpensesByDate() {
     var startDateInput = document.getElementById('start-date-input');
     var endDateInput = document.getElementById('end-date-input');
 
@@ -63,14 +70,6 @@ function filterExpenses() {
     displayExpenses(filteredExpenses);
 }
 
-function sortExpensesByAmount() {
-    var sortedExpenses = expenses.sort(function(a, b) {
-        return a.amount - b.amount;
-    });
-
-    displayExpenses(sortedExpenses);
-}
-
 function displayExpenses(expensesToDisplay) {
     var expenseList = document.getElementById('expense-list');
     expenseList.innerHTML = '';
@@ -79,7 +78,7 @@ function displayExpenses(expensesToDisplay) {
         var expense = expensesToDisplay[i];
 
         var newExpenseItem = document.createElement('li');
-        newExpenseItem.textContent = expense.name;
+        newExpenseItem.textContent = expense.name + ' - ' + expense.amount + ' - ' + expense.date.toDateString();
 
         var deleteButton = document.createElement('button');
         deleteButton.textContent = 'Удалить';
@@ -90,11 +89,11 @@ function displayExpenses(expensesToDisplay) {
     }
 }
 
-// Инициализация обработчиков событий и обновление списка расходов
-document.getElementById('expense-input').addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        addExpense();
-    }
-});
+// Инициализация обработчиков событий
+document.getElementById('add-expense-button').addEventListener('click', addExpense);
 
-updateTotalExpenses
+document.getElementById('start-date-input').addEventListener('change', filterExpensesByDate);
+document.getElementById('end-date-input').addEventListener('change', filterExpensesByDate);
+
+updateTotalExpenses();
+displayExpenses(expenses);
